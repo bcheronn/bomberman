@@ -2,10 +2,19 @@
   background-color: black;
 }
 
+html {
+  --custom: 0;
+}
+
+body {
+  --custom: 0;
+}
+
 .playground {
   width: 512px;
   height: 512px;
   border: 1rem solid white;
+  margin: auto;
 }
 
 .player {

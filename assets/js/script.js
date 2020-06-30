@@ -1,1 +1,1 @@
-console.timeLog;
+window.addEventListener("keydown", () => console.log("window keydown"));
