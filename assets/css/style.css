@@ -15,10 +15,12 @@ body {
   height: 512px;
   border: 1rem solid white;
   margin: auto;
+  position: relative;
 }
 
 .player {
   width: 32px;
   height: 32px;
   background-color: tomato;
+  position: absolute;
 }

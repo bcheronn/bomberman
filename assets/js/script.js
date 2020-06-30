@@ -1,19 +1,36 @@
-function keydownLst(event) {
-  const keyPressed = event.code;
+// Move an object in a direction
+function move(object, direction) {
+  return null;
+}
+// Listener function for the keydown event
+function keydownLstnr(event) {
+  let exitStatus = 0;
+  //TODO: Check event for undefined or not keyboard
+  const keyPressed = event.code; // Key code of the pressed key got through the event
+
+  // Parse the key code to execute proper action
   switch (keyPressed) {
     case "ArrowUp":
-      return console.log("Up : " + keyPressed);
+      move("player", "Up");
+      break;
     case "ArrowDown":
-      return console.log("Down : " + keyPressed);
+      move("player", "Down");
+      break;
     case "ArrowLeft":
-      return console.log("Left : " + keyPressed);
+      move("player", "Left");
+      break;
     case "ArrowRight":
-      return console.log("Right : " + keyPressed);
+      move("player", "Right");
+      break;
     case "Space":
-      return console.log("Space : " + keyPressed);
+      bomb();
+      break;
     default:
-      return console.log("Others : " + keyPressed);
+      break;
   }
+  return exitStatus;
 }
 
-window.addEventListener("keydown", (evt) => keydownLst(evt));
+// Listen to the keydown event
+//TODO: Check window status
+window.addEventListener("keydown", (evt) => keydownLstnr(evt));
