@@ -10,7 +10,7 @@ body {
   --custom: 0;
 }
 
-.playground {
+#playground {
   width: 512px;
   height: 512px;
   border: 1rem solid white;
@@ -18,7 +18,7 @@ body {
   position: relative;
 }
 
-.player {
+#player {
   width: 32px;
   height: 32px;
   background-color: tomato;
