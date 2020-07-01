@@ -4,31 +4,36 @@ function move(object, direction) {
 
   // Get the object to move
   // TODO: test return value
-  const elmnt = document.getElementById("player");
+  const elmnt = document.getElementById(object);
   const cmptdStls = window.getComputedStyle(elmnt);
-  const tp = cmptdStls.getPropertyValue("top");
-  const lft = cmptdStls.getPropertyValue("left");
-  const bttm = cmptdStls.getPropertyValue("bottom");
-  const rght = cmptdStls.getPropertyValue("right");
 
-  console.log("Before : T" + tp + " / L" + lft + " / B" + bttm + " / R" + rght);
-
+  // Move according to direction
+  // TODO : Régler le pas
+  let nxtPstn;
   switch (direction) {
     case "Up":
-      elmnt.style.top = "0px";
-      console.log(cmptdStls.getPropertyValue("top"));
+      nxtPstn = parseInt(cmptdStls.getPropertyValue("top"), 10) - 10; // TODO: Refactor in a function
+      nxtPstn = nxtPstn < 0 ? 0 : nxtPstn;
+      elmnt.style.top = nxtPstn + "px";
+      console.log("Up" + nxtPstn);
       break;
     case "Left":
-      elmnt.style.left = "0px";
-      console.log(cmptdStls.getPropertyValue("left"));
+      nxtPstn = parseInt(cmptdStls.getPropertyValue("left"), 10) - 10; // TODO: Refactor in a function
+      nxtPstn = nxtPstn < 0 ? 0 : nxtPstn;
+      elmnt.style.left = nxtPstn + "px";
+      console.log("Left" + nxtPstn);
       break;
     case "Down":
-      elmnt.style.top = "480px";
-      console.log(cmptdStls.getPropertyValue("bottom"));
+      nxtPstn = parseInt(cmptdStls.getPropertyValue("top"), 10) + 10; // TODO: Refactor in a function
+      nxtPstn = nxtPstn > 480 ? 480 : nxtPstn;
+      elmnt.style.top = nxtPstn + "px";
+      console.log("Down" + nxtPstn);
       break;
     case "Right":
-      elmnt.style.left = "480px";
-      console.log(cmptdStls.getPropertyValue("right"));
+      nxtPstn = parseInt(cmptdStls.getPropertyValue("left"), 10) + 10; // TODO: Refactor in a function
+      nxtPstn = nxtPstn > 480 ? 480 : nxtPstn;
+      elmnt.style.left = nxtPstn + "px";
+      console.log("Right" + nxtPstn);
       break;
     default:
       break;
