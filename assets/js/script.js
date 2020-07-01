@@ -6,8 +6,7 @@ function move(object, direction) {
 
   // Get the object to move
   // TODO: test return value
-  const elmnt = document.getElementById(object);
-  const cmptdStls = window.getComputedStyle(elmnt);
+  const cmptdStls = window.getComputedStyle(object);
 
   // Move according to direction
   let nxtPstn; // Calculated next position
@@ -15,22 +14,22 @@ function move(object, direction) {
     case "Up":
       nxtPstn = parseInt(cmptdStls.getPropertyValue("top"), 10) - objPc; // TODO: Refactor in a function
       nxtPstn = nxtPstn < 0 ? 0 : nxtPstn;
-      elmnt.style.top = nxtPstn + "px";
+      object.style.top = nxtPstn + "px";
       break;
     case "Left":
       nxtPstn = parseInt(cmptdStls.getPropertyValue("left"), 10) - objPc; // TODO: Refactor in a function
       nxtPstn = nxtPstn < 0 ? 0 : nxtPstn;
-      elmnt.style.left = nxtPstn + "px";
+      object.style.left = nxtPstn + "px";
       break;
     case "Down":
       nxtPstn = parseInt(cmptdStls.getPropertyValue("top"), 10) + objPc; // TODO: Refactor in a function
       nxtPstn = nxtPstn > 480 ? 480 : nxtPstn;
-      elmnt.style.top = nxtPstn + "px";
+      object.style.top = nxtPstn + "px";
       break;
     case "Right":
       nxtPstn = parseInt(cmptdStls.getPropertyValue("left"), 10) + objPc; // TODO: Refactor in a function
       nxtPstn = nxtPstn > 480 ? 480 : nxtPstn;
-      elmnt.style.left = nxtPstn + "px";
+      object.style.left = nxtPstn + "px";
       break;
     default:
       break;
@@ -57,20 +56,21 @@ function keydownLstnr(event) {
   // TODO: Check event for undefined or not keyboard
   const keyPressed = event.code; // Key code of the pressed key got through the event
 
+  const elmnt = document.getElementById("bomber");
   // Parse the key code to execute proper action
   // TODO: Use an array to map keys and directions
   switch (keyPressed) {
     case "ArrowUp":
-      move("bomber", "Up");
+      move(elmnt, "Up");
       break;
     case "ArrowLeft":
-      move("bomber", "Left");
+      move(elmnt, "Left");
       break;
     case "ArrowDown":
-      move("bomber", "Down");
+      move(elmnt, "Down");
       break;
     case "ArrowRight":
-      move("bomber", "Right");
+      move(elmnt, "Right");
       break;
     case "Space":
       bomb();
@@ -81,7 +81,37 @@ function keydownLstnr(event) {
   return exitStatus;
 }
 
+// Animate the opponents
+function anmtOppnnts() {
+  let exitStatus = 0;
+
+  let oppnnts = document.getElementsByClassName("opponent");
+
+  for (let i = 0; i < oppnnts.length; i++) {
+    // TODO: Randomise the move
+    switch (Math.floor(Math.random() * 4)) {
+      case 0:
+        move(oppnnts[i], "Up");
+        break;
+      case 1:
+        move(oppnnts[i], "Left");
+        break;
+      case 2:
+        move(oppnnts[i], "Down");
+        break;
+      case 3:
+        move(oppnnts[i], "Right");
+        break;
+      default:
+        // Do nothing
+        break;
+    }
+  }
+  return exitStatus;
+}
+
 // Game initialisation
 // TODO: Check window status
 // Listen to the keydown event
 window.addEventListener("keydown", (evt) => keydownLstnr(evt));
+window.setInterval(() => anmtOppnnts(), "500");
