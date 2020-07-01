@@ -1,4 +1,6 @@
 /* Topmost declarations */
+/* TODO: Use constant for sizing */
+
 :root {
   background-color: black;
 }
@@ -22,10 +24,16 @@ body {
   position: relative;
 }
 
-#player {
+#bomber {
   width: 32px;
   height: 32px;
-  background-color: tomato;
+  background-color: orangered;
   position: absolute;
+}
 
+.opponent {
+  width: 32px;
+  height: 32px;
+  background-color: navy;
+  position: absolute;
 }

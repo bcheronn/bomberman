@@ -61,16 +61,16 @@ function keydownLstnr(event) {
   // TODO: Use an array to map keys and directions
   switch (keyPressed) {
     case "ArrowUp":
-      move("player", "Up");
+      move("bomber", "Up");
       break;
     case "ArrowLeft":
-      move("player", "Left");
+      move("bomber", "Left");
       break;
     case "ArrowDown":
-      move("player", "Down");
+      move("bomber", "Down");
       break;
     case "ArrowRight":
-      move("player", "Right");
+      move("bomber", "Right");
       break;
     case "Space":
       bomb();
