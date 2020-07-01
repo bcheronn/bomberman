@@ -1,6 +1,7 @@
 // Move an object in a direction. If direction is omitted, move at random
 function move(object, direction) {
   let exitStatus = 0;
+  const objPc = 10; // Pace for next move
 
   // Get the object to move
   // TODO: test return value
@@ -9,31 +10,27 @@ function move(object, direction) {
 
   // Move according to direction
   // TODO : Régler le pas
-  let nxtPstn;
+  let nxtPstn; // Calculated next position
   switch (direction) {
     case "Up":
-      nxtPstn = parseInt(cmptdStls.getPropertyValue("top"), 10) - 10; // TODO: Refactor in a function
+      nxtPstn = parseInt(cmptdStls.getPropertyValue("top"), 10) - objPc; // TODO: Refactor in a function
       nxtPstn = nxtPstn < 0 ? 0 : nxtPstn;
       elmnt.style.top = nxtPstn + "px";
-      console.log("Up" + nxtPstn);
       break;
     case "Left":
-      nxtPstn = parseInt(cmptdStls.getPropertyValue("left"), 10) - 10; // TODO: Refactor in a function
+      nxtPstn = parseInt(cmptdStls.getPropertyValue("left"), 10) - objPc; // TODO: Refactor in a function
       nxtPstn = nxtPstn < 0 ? 0 : nxtPstn;
       elmnt.style.left = nxtPstn + "px";
-      console.log("Left" + nxtPstn);
       break;
     case "Down":
-      nxtPstn = parseInt(cmptdStls.getPropertyValue("top"), 10) + 10; // TODO: Refactor in a function
+      nxtPstn = parseInt(cmptdStls.getPropertyValue("top"), 10) + objPc; // TODO: Refactor in a function
       nxtPstn = nxtPstn > 480 ? 480 : nxtPstn;
       elmnt.style.top = nxtPstn + "px";
-      console.log("Down" + nxtPstn);
       break;
     case "Right":
-      nxtPstn = parseInt(cmptdStls.getPropertyValue("left"), 10) + 10; // TODO: Refactor in a function
+      nxtPstn = parseInt(cmptdStls.getPropertyValue("left"), 10) + objPc; // TODO: Refactor in a function
       nxtPstn = nxtPstn > 480 ? 480 : nxtPstn;
       elmnt.style.left = nxtPstn + "px";
-      console.log("Right" + nxtPstn);
       break;
     default:
       break;
