@@ -38,15 +38,31 @@ function move(object, direction) {
   return exitStatus;
 }
 
+function expldBmb() {
+  //Explosion animation
+}
+
 // Check if 2 objects are colliding
 // function chckCrsh() {
 //   let exitStatus = 0;
 //   return exitStatus;
 // }
 
-// Drop a bomb
-function bomb() {
+// Drop a bomb at the position of the object
+function bomb(object) {
   let exitStatus = 0;
+
+  const bmb = document.getElementById("bomb"); // Get the bomb object
+  const bmbrStl = window.getComputedStyle(object); // Get the bomber styles
+
+  // Drop (position and show) the bomb
+  bmb.style.top = bmbrStl.getPropertyValue("top");
+  bmb.style.left = bmbrStl.getPropertyValue("left");
+  bmb.style.display = "block";
+
+  // Trigger the bomb
+  window.setTimeout(() => expldBmb(), "3000");
+
   return exitStatus;
 }
 
@@ -56,26 +72,26 @@ function keydownLstnr(event) {
   // TODO: Check event for undefined or not keyboard
   const keyPressed = event.code; // Key code of the pressed key got through the event
 
-  const elmnt = document.getElementById("bomber");
   // Parse the key code to execute proper action
   // TODO: Use an array to map keys and directions
   switch (keyPressed) {
     case "ArrowUp":
-      move(elmnt, "Up");
+      move(document.getElementById("bomber"), "Up");
       break;
     case "ArrowLeft":
-      move(elmnt, "Left");
+      move(document.getElementById("bomber"), "Left");
       break;
     case "ArrowDown":
-      move(elmnt, "Down");
+      move(document.getElementById("bomber"), "Down");
       break;
     case "ArrowRight":
-      move(elmnt, "Right");
+      move(document.getElementById("bomber"), "Right");
       break;
     case "Space":
-      bomb();
+      bomb(document.getElementById("bomber"));
       break;
     default:
+      // Do nothing
       break;
   }
   return exitStatus;

@@ -17,18 +17,29 @@ body {
 
 #playground {
   /* Playground size */
+  position: relative;
   width: 512px;
   height: 512px;
   border: 1rem solid white;
   margin: auto;
-  position: relative;
 }
 
 #bomber {
+  position: absolute;
   width: 32px;
   height: 32px;
   background-color: orangered;
+}
+
+#bomb {
   position: absolute;
+  width: 32px;
+  height: 32px;
+  background-color: palegreen;
+  border-radius: 50%;
+  display: none;
+  opacity: 10%;
+  transform: scale(0.5);
 }
 
 .opponent {
