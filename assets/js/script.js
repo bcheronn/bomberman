@@ -1,4 +1,5 @@
 // Move an object in a direction. If direction is omitted, move at random
+// TODO: Random moves
 function move(object, direction) {
   let exitStatus = 0;
   const objPc = 10; // Pace for next move
@@ -9,7 +10,6 @@ function move(object, direction) {
   const cmptdStls = window.getComputedStyle(elmnt);
 
   // Move according to direction
-  // TODO : Régler le pas
   let nxtPstn; // Calculated next position
   switch (direction) {
     case "Up":
@@ -58,6 +58,7 @@ function keydownLstnr(event) {
   const keyPressed = event.code; // Key code of the pressed key got through the event
 
   // Parse the key code to execute proper action
+  // TODO: Use an array to map keys and directions
   switch (keyPressed) {
     case "ArrowUp":
       move("player", "Up");
