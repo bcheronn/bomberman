@@ -33,13 +33,22 @@ body {
 
 #bomb {
   position: absolute;
+  display: none;
   width: 32px;
   height: 32px;
   background-color: palegreen;
   border-radius: 50%;
-  display: none;
   opacity: 10%;
   transform: scale(0.5);
+  transition: all 50ms ease-in 3s;
+  /* transition: width height background-color border-radius opacity transform; */
+}
+
+.explode {
+  background-color: red !important;
+  border-radius: 0% !important;
+  opacity: 100% !important;
+  transform: scale(3) !important;
 }
 
 .opponent {

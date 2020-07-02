@@ -60,8 +60,9 @@ function bomb(object) {
   bmb.style.left = bmbrStl.getPropertyValue("left");
   bmb.style.display = "block";
 
-  // Trigger the bomb
-  window.setTimeout(() => expldBmb(), "3000");
+  // Trigger the bomb (1st try using a transition and delay)
+  // window.setTimeout(() => expldBmb(), "3000");
+  bmb.classList.toggle("explode");
 
   return exitStatus;
 }
