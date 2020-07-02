@@ -43,10 +43,18 @@ function expldBmb() {
 }
 
 // Check if 2 objects are colliding
-// function chckCrsh() {
-//   let exitStatus = 0;
-//   return exitStatus;
-// }
+function chckCrsh(object1, object2) {
+  let exitStatus = 0;
+
+  return !(
+    object1.right < object2.left ||
+    object1.left > object2.right ||
+    object1.bottom < object2.top ||
+    object1.top > object2.bottom
+  );
+}
+
+() => expldBmb()
 
 // Drop a bomb at the position of the object
 function bomb(object) {
@@ -61,8 +69,9 @@ function bomb(object) {
   bmb.style.display = "block";
 
   // Trigger the bomb (1st try using a transition and delay)
-  // window.setTimeout(() => expldBmb(), "3000");
-  bmb.classList.toggle("explode");
+  window.setTimeout(() => expldBmb(), "3000");
+  
+  // Check if it kills someone
 
   return exitStatus;
 }

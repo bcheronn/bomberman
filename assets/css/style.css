@@ -41,7 +41,6 @@ body {
   opacity: 10%;
   transform: scale(0.5);
   transition: all 50ms ease-in 3s;
-  /* transition: width height background-color border-radius opacity transform; */
 }
 
 .explode {
