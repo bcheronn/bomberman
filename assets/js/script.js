@@ -43,14 +43,18 @@ function expldBmb() {
 }
 
 // Check if 2 objects are colliding
-function chckCrsh(object1, object2) {
+function chckCrsh(objct1, objct2) {
   let exitStatus = 0;
 
+  // getBoundingClientRect
+  const objct1Rct = objct1.getBoundingClientRect();
+  const objct2Rct = objct2.getBoundingClientRect();
+
   return !(
-    object1.right < object2.left ||
-    object1.left > object2.right ||
-    object1.bottom < object2.top ||
-    object1.top > object2.bottom
+    objct1Rct.right < objct2Rct.left ||
+    objct1Rct.left > objct2Rct.right ||
+    objct1Rct.bottom < objct2Rct.top ||
+    objct1Rct.top > objct2Rct.bottom
   );
 }
 
@@ -71,6 +75,29 @@ function bomb(object) {
   bmb.classList.toggle("explode");
 
   // Check if it kills someone
+  // TODO: Delay management
+  // TODO: Try to implement forEach
+  const vctms = document.querySelectorAll("#bomber, .opponent");
+  for (let i = 0; i < vctms.length; i++) {
+    if (chckCrsh(vctms[i], bmb)) {
+      const vctmTp =
+        vctms[i].id === "bomber"
+          ? "bomber"
+          : vctms[i].className === "opponent"
+          ? "opponent"
+          : "";
+      switch (vctmTp) {
+        case "bomber": // Bomber: TODO: Life management
+          alert("bomber");
+          break;
+        case "opponent": // Opponent: TODO: "Kill"
+          alert("opponent");
+          break;
+        default:
+          break;
+      }
+    }
+  }
 
   return exitStatus;
 }
