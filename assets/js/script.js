@@ -54,8 +54,6 @@ function chckCrsh(object1, object2) {
   );
 }
 
-() => expldBmb()
-
 // Drop a bomb at the position of the object
 function bomb(object) {
   let exitStatus = 0;
@@ -69,8 +67,9 @@ function bomb(object) {
   bmb.style.display = "block";
 
   // Trigger the bomb (1st try using a transition and delay)
-  window.setTimeout(() => expldBmb(), "3000");
-  
+  // window.setTimeout(() => expldBmb(), "3000");
+  bmb.classList.toggle("explode");
+
   // Check if it kills someone
 
   return exitStatus;
