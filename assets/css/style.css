@@ -1,18 +1,21 @@
 /* Topmost declarations */
-/* TODO: Use constant for sizing */
+/* TODO: Use constant for sizing, colors, etc */
 
 :root {
   background-color: black;
+
+  /* Internal tests */
+  --custom-root: 0;
 }
 
 /* Internal tests */
 html {
-  --custom: 0;
+  --custom-html: 0;
 }
 
 /* Internal tests */
 body {
-  --custom: 0;
+  --custom-body: 0;
 }
 
 #playground {
@@ -40,7 +43,7 @@ body {
   border-radius: 50%;
   opacity: 10%;
   transform: scale(0.5);
-  transition: all 50ms ease-in;
+  transition: all ease-in;
 }
 
 .explode {

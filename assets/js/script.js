@@ -38,6 +38,17 @@ function move(object, direction) {
   return exitStatus;
 }
 
+//Explosion is over
+function clrBmb() {
+  let exitStatus = 0;
+
+  const bmb = document.getElementById("bomb"); // Get the bomb object
+  bmb.style.display = "none";
+  bmb.classList.toggle("explode");
+
+  return exitStatus;
+}
+
 //Explosion animation
 function expldBmb() {
   let exitStatus = 0;
@@ -45,8 +56,8 @@ function expldBmb() {
   const bmb = document.getElementById("bomb"); // Get the bomb object
   bmb.classList.toggle("explode");
 
-  bmb.style.display = "none";
-  bmb.classList.toggle("explode");
+  // TODO: Implémenter la portée globale
+  window.setTimeout(() => clrBmb(), "50");
 
   return exitStatus;
 }
@@ -78,8 +89,8 @@ function bomb(object) {
   bmb.style.display = "block";
 
   // Trigger the bomb (1st try using a transition and delay)
+  // TODO: Implémenter la portée globale
   window.setTimeout(() => expldBmb(), "3000");
-  // bmb.classList.toggle("explode");
 
   // Check if it kills someone
   // TODO: Delay management
@@ -172,5 +183,7 @@ function anmtOppnnts() {
 // Game initialisation
 // TODO: Check window status
 // Listen to the keydown event
-window.addEventListener("keydown", (evt) => keydownLstnr(evt));
-window.setInterval(() => anmtOppnnts(), "500");
+window.addEventListener("keydown", keydownLstnr);
+
+// Animate the opponents
+window.setInterval(anmtOppnnts, "500");
