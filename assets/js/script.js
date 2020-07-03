@@ -38,14 +38,21 @@ function move(object, direction) {
   return exitStatus;
 }
 
+//Explosion animation
 function expldBmb() {
-  //Explosion animation
-}
-
-// Check if 2 objects are colliding
-function chckCrsh(objct1, objct2) {
   let exitStatus = 0;
 
+  const bmb = document.getElementById("bomb"); // Get the bomb object
+  bmb.classList.toggle("explode");
+
+  bmb.style.display = "none";
+  bmb.classList.toggle("explode");
+
+  return exitStatus;
+}
+
+// Check if 2 objects are colliding (bounding rectangle overlap)
+function chckCrsh(objct1, objct2) {
   // getBoundingClientRect
   const objct1Rct = objct1.getBoundingClientRect();
   const objct2Rct = objct2.getBoundingClientRect();
@@ -71,33 +78,33 @@ function bomb(object) {
   bmb.style.display = "block";
 
   // Trigger the bomb (1st try using a transition and delay)
-  // window.setTimeout(() => expldBmb(), "3000");
-  bmb.classList.toggle("explode");
+  window.setTimeout(() => expldBmb(), "3000");
+  // bmb.classList.toggle("explode");
 
   // Check if it kills someone
   // TODO: Delay management
   // TODO: Try to implement forEach
-  const vctms = document.querySelectorAll("#bomber, .opponent");
-  for (let i = 0; i < vctms.length; i++) {
-    if (chckCrsh(vctms[i], bmb)) {
-      const vctmTp =
-        vctms[i].id === "bomber"
-          ? "bomber"
-          : vctms[i].className === "opponent"
-          ? "opponent"
-          : "";
-      switch (vctmTp) {
-        case "bomber": // Bomber: TODO: Life management
-          alert("bomber");
-          break;
-        case "opponent": // Opponent: TODO: "Kill"
-          alert("opponent");
-          break;
-        default:
-          break;
-      }
-    }
-  }
+  // const vctms = document.querySelectorAll("#bomber, .opponent");
+  // for (let i = 0; i < vctms.length; i++) {
+  //   if (chckCrsh(vctms[i], bmb)) {
+  //     const vctmTp =
+  //       vctms[i].id === "bomber"
+  //         ? "bomber"
+  //         : vctms[i].className === "opponent"
+  //         ? "opponent"
+  //         : "";
+  //     switch (vctmTp) {
+  //       case "bomber": // Bomber: TODO: Life management
+  //         alert("bomber");
+  //         break;
+  //       case "opponent": // Opponent: TODO: "Kill"
+  //         alert("opponent");
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   }
+  // }
 
   return exitStatus;
 }
