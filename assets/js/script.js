@@ -50,18 +50,6 @@ function clrBmb() {
 }
 
 //Explosion animation
-function expldBmb() {
-  let exitStatus = 0;
-
-  const bmb = document.getElementById("bomb"); // Get the bomb object
-  bmb.classList.toggle("explode");
-
-  // TODO: Implémenter la portée globale
-  window.setTimeout(() => clrBmb(), "50");
-
-  return exitStatus;
-}
-
 // Check if 2 objects are colliding (bounding rectangle overlap)
 function chckCrsh(objct1, objct2) {
   // getBoundingClientRect
@@ -74,6 +62,54 @@ function chckCrsh(objct1, objct2) {
     objct1Rct.bottom < objct2Rct.top ||
     objct1Rct.top > objct2Rct.bottom
   );
+}
+
+// Decrease the lifes counter
+// Stop the game at 0
+function dcrsLf() {
+  const cntr = parseInt(document.getElementById("counter").innerText);
+  if (cntr > 1) {
+    document.getElementById("counter").innerText = cntr - 1;
+  } else {
+    document.getElementById("lives").innerText = "You lose";
+  }
+}
+
+function expldBmb() {
+  let exitStatus = 0;
+
+  const bmb = document.getElementById("bomb"); // Get the bomb object
+  bmb.classList.toggle("explode");
+
+  // Check if it kills someone
+  // TODO: Delay management
+  // TODO: Try to implement forEach
+  const vctms = document.querySelectorAll("#bomber, .opponent");
+  for (let i = 0; i < vctms.length; i++) {
+    if (chckCrsh(vctms[i], bmb)) {
+      const vctmTp =
+        vctms[i].id === "bomber"
+          ? "bomber"
+          : vctms[i].className === "opponent"
+          ? "opponent"
+          : "";
+      switch (vctmTp) {
+        case "bomber": // Bomber
+          dcrsLf();
+          break;
+        case "opponent": // Opponent
+          vctms[i].style.display = "none"; // TODO: Check if there are opponents left
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  // TODO: Implémenter la portée globale
+  window.setTimeout(() => clrBmb(), "50");
+
+  return exitStatus;
 }
 
 // Drop a bomb at the position of the object
@@ -91,31 +127,6 @@ function bomb(object) {
   // Trigger the bomb (1st try using a transition and delay)
   // TODO: Implémenter la portée globale
   window.setTimeout(() => expldBmb(), "3000");
-
-  // Check if it kills someone
-  // TODO: Delay management
-  // TODO: Try to implement forEach
-  // const vctms = document.querySelectorAll("#bomber, .opponent");
-  // for (let i = 0; i < vctms.length; i++) {
-  //   if (chckCrsh(vctms[i], bmb)) {
-  //     const vctmTp =
-  //       vctms[i].id === "bomber"
-  //         ? "bomber"
-  //         : vctms[i].className === "opponent"
-  //         ? "opponent"
-  //         : "";
-  //     switch (vctmTp) {
-  //       case "bomber": // Bomber: TODO: Life management
-  //         alert("bomber");
-  //         break;
-  //       case "opponent": // Opponent: TODO: "Kill"
-  //         alert("opponent");
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //   }
-  // }
 
   return exitStatus;
 }
@@ -148,14 +159,14 @@ function keydownLstnr(event) {
       // Do nothing
       break;
   }
-  return exitStatus;
 }
 
 // Animate the opponents
 function anmtOppnnts() {
   let exitStatus = 0;
 
-  let oppnnts = document.getElementsByClassName("opponent");
+  const oppnnts = document.getElementsByClassName("opponent");
+  const bmbr = document.getElementById("bomber");
 
   for (let i = 0; i < oppnnts.length; i++) {
     // TODO: Randomise the move
@@ -176,12 +187,23 @@ function anmtOppnnts() {
         // Do nothing
         break;
     }
+
+    // Check if it kills the bomber
+    if (chckCrsh(oppnnts[i], bmbr)) {
+      dcrsLf();
+    }
   }
   return exitStatus;
 }
 
 // Game initialisation
-// TODO: Check window status
+// Randomise the starting positions
+const sprites = document.querySelectorAll("#bomber, .opponent");
+for (let i = 0; i < sprites.length; i++) {
+  sprites[i].style.top = Math.floor(Math.random() * 480) + "px";
+  sprites[i].style.left = Math.floor(Math.random() * 480) + "px";
+}
+
 // Listen to the keydown event
 window.addEventListener("keydown", keydownLstnr);
 

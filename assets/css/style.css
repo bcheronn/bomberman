@@ -25,6 +25,8 @@ body {
   height: 512px;
   border: 1rem solid white;
   margin: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 
 #bomber {
@@ -58,4 +60,11 @@ body {
   height: 32px;
   background-color: navy;
   position: absolute;
+}
+
+#lives {
+  color: white;
+  width: 80px;
+  margin: auto;
+  margin-top: 2em;
 }
